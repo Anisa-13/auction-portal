@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
@@ -6,12 +7,18 @@
 
 <div class="site-wrap">
   <div th:replace="fragments/menu :: mobile-menu"></div>
+
   <div th:replace="fragments/header :: header"></div>
-  <div th:replace="fragments/intro :: intro"></div>
-  <div th:replace="fragments/currentAuction :: currentAuction"></div>
-  <div th:replace="fragments/howItWorks :: howItWorks"></div>
+
+  <div th:replace="fragments/introAbout :: introAbout"></div>
+
   <div th:replace="fragments/infoHome :: infoHome"></div>
-  <div th:replace="fragments/happyClients :: happyClients"></div>
+
+  <div th:replace="fragments/infoAbout :: infoAbout"></div>
+
+  <div th:replace="fragments/ourTeamAbout :: ourTeamAbout"></div>
+
+  <div th:replace="fragments/createAcount :: createAcount"></div>
 
 
   <div th:replace="fragments/footer :: footer"></div>

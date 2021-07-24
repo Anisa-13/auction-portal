@@ -6,18 +6,22 @@
 
 <div class="site-wrap">
   <div th:replace="fragments/menu :: mobile-menu"></div>
+
   <div th:replace="fragments/header :: header"></div>
-  <div th:replace="fragments/intro :: intro"></div>
-  <div th:replace="fragments/currentAuction :: currentAuction"></div>
-  <div th:replace="fragments/howItWorks :: howItWorks"></div>
-  <div th:replace="fragments/infoHome :: infoHome"></div>
+
+  <div th:replace="fragments/introContact :: introContact"></div>
+
+  <div th:replace="fragments/contactForm :: contactForm"></div>
+
   <div th:replace="fragments/happyClients :: happyClients"></div>
 
 
   <div th:replace="fragments/footer :: footer"></div>
 </div>
-<div th:replace="fragments/loader :: loader"></div>
-<div th:replace="fragments/script :: script"></div>
-</body>
 
+<div th:replace="fragments/loader :: loader"></div>
+
+<div th:replace="fragments/script :: script"></div>
+
+</body>
 </html>
