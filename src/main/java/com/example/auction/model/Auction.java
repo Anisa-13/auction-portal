@@ -1,11 +1,10 @@
 package com.example.auction.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Auction {
@@ -32,11 +31,34 @@ public class Auction {
 
     private boolean isConfirmed;
 
+    @OneToMany(mappedBy = "bid")
+    private List<Bid> bids = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "auctions")
+    private Category category;
+
     public Auction() {
     }
 
     public Auction(Integer auctionId) {
         this.auctionId = auctionId;
+    }
+
+    public List<Bid> getBids() {
+        return bids;
+    }
+
+    public void setBids(List<Bid> bids) {
+        this.bids = bids;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Integer getAuctionId() {

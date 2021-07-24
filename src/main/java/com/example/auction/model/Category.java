@@ -1,9 +1,8 @@
 package com.example.auction.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -12,6 +11,10 @@ public class Category {
     private int categoryId;
 
     private String categoryName;
+
+    @OneToMany(mappedBy = "auction")
+    private List<Auction> auctions = new ArrayList<>();
+
 
     public Category() {
     }
@@ -39,5 +42,13 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public List<Auction> getAuctions() {
+        return auctions;
+    }
+
+    public void setAuctions(List<Auction> auctions) {
+        this.auctions = auctions;
     }
 }

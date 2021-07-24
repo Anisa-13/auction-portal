@@ -1,9 +1,8 @@
 package com.example.auction.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -17,6 +16,9 @@ public class User {
     private String password;
     private String email;
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "bid")
+    private List<Bid> bids = new ArrayList<>();
 
     public User() {
     }
@@ -90,5 +92,13 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<Bid> getBids() {
+        return bids;
+    }
+
+    public void setBids(List<Bid> bids) {
+        this.bids = bids;
     }
 }
