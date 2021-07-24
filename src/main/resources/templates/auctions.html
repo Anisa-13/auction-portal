@@ -7,7 +7,6 @@
     <div th:replace="fragments/header :: header"></div>
     <div th:replace="fragments/intro :: intro"></div>
 
-
     <div class="site-section">
         <div class="container">
 
@@ -143,39 +142,18 @@
                     </div>
                 </div>
 
-                <div th:replace="fragments/single-item :: single-item"></div>
+                <div class="col-md-9" th:insert="fragments/auction-list :: auction-list">
 
-                <div class="pb-5">
-                    <div class="container text-center">
-                        <div class="row">
-                            <div class="col-lg">
-                                <div class="custom-pagination">
-                                    <a href="#" class="active">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
-                                    <a href="#">4</a>
-                                    <a href="#">5</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
-
-                <div th:replace="fragments/how :: how-it-works"></div>
-                <div th:replace="fragments/register :: register"></div>
-
-
-                <div th:replace="fragments/footer :: footer"></div>
+            </div>
+        </div>
+    </div>
 </div>
-
+<div th:replace="fragments/footer :: footer"></div>
 <div th:replace="fragments/loader :: loader"></div>
 <div th:replace="fragments/script :: script"></div>
-
-
-
 </body>
-
 
 
 </html>

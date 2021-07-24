@@ -8,7 +8,6 @@ public class AuctionController {
     @GetMapping("/auction")
     public String getBuy(){
         return "auctions";
-
     }
 
 }
