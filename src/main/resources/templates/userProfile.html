@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/style :: style"></head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-wrap">
+  <div th:replace="fragments/menu :: mobile-menu"></div>
+  <div th:replace="fragments/header :: header"></div>
+  <div class="intro-section" th:fragment="intro" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-7 mx-auto text-center" data-aos="fade-up">
+          <h1>Welcome back</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, nihil.</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding: 2rem 0rem">
+    <div class="row">
+      <div class="col-md-7 mb-5 text-center mx-auto">
+        <br>
+        <br>
+        <span class="caption"> </span>
+        <h2 class="text-black"><strong>My Auctions</strong></h2>
+      </div>
+      <div class="col-12">
+        <table class="table table-image" style="vertical-align: middle">
+          <thead>
+          <tr>
+            <th scope="col">Nr</th>
+            <th scope="col">Auction</th>
+            <th scope="col">Name</th>
+            <th scope="col">My Bid</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td class="w-25">
+              <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg" class="img-fluid img-thumbnail" alt="Sheep">
+            </td>
+            <td>Bootstrap 4 CDN and Starter Template</td>
+            <td>Cristina</td>
+            <td>913</td>
+            <td>2.846</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td class="w-25">
+              <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-5.jpg" class="img-fluid img-thumbnail" alt="Sheep">
+            </td>
+            <td>Bootstrap Grid 4 Tutorial and Examples</td>
+            <td>Cristina</td>
+            <td>1.434</td>
+            <td>3.417</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div th:replace="fragments/footer :: footer"></div>
+
+</div>
+
+<div th:replace="fragments/loader :: loader"></div>
+<div th:replace="fragments/script :: script"></div>
+
+</body>
+</html>
