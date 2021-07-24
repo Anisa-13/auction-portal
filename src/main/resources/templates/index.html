@@ -9,6 +9,53 @@
     <div th:replace="fragments/header :: header"></div>
     <div th:replace="fragments/intro :: intro"></div>
 
+    <div th:replace="fragments/auctions :: current-auctions"></div>
+
+   <div th:replace="fragments/how :: how-it-works"></div>
+
+    <div class="site-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <img src="images/hero_1.jpg" alt="Image" class="img-fluid">
+                </div>
+                <div class="col-lg-5 pl-lg-5">
+                    <div class="mb-5">
+                        <span class="caption">About?</span>
+                        <h2 class="text-black">About <strong>Us</strong></h2>
+                    </div>
+                    <div class="d-flex feature-icon mb-3">
+                        <span class="wrap-icon icon-paper-plane mr-2"></span>
+                        <div>
+                            <h3>Fast Support</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, debitis!</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex feature-icon mb-3">
+                        <span class="wrap-icon icon-smile-o mr-2"></span>
+                        <div>
+                            <h3>Happy Customers</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, debitis!</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex feature-icon mb-3">
+                        <span class="wrap-icon icon-support mr-2"></span>
+                        <div>
+                            <h3>24/7 Support</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste, debitis!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="fragments/testimonials :: testimonials" ></div>
+    <div th:replace="fragments/register :: register"></div>
+
+
 
     <div th:replace="fragments/footer :: footer"></div>
 </div>
