@@ -5,5 +5,6 @@ import com.example.auction.domain.Auction;
 import java.util.List;
 
 public interface AuctionService {
-    public List<Auction> getCurrentAuctions();
+    List<Auction> getCurrentAuctions();
+    void createDummyData();
 }

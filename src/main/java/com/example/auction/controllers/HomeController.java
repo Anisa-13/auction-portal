@@ -15,6 +15,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(ModelMap model) {
+        //auctionService.createDummyData();
         model.addAttribute("currentAuctions", auctionService.getCurrentAuctions());
         return "index";
     }
