@@ -1,13 +1,13 @@
 package com.example.auction.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.example.auction.utils.AuctionStatus;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "auction")
@@ -15,34 +15,36 @@ import java.util.List;
 public class Auction {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "auction_id")
-    private int id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
     @NotEmpty
-    private String auctionPhoto;
+    private String image;
 
     @NotEmpty
-    private String productName;
+    private String name;
 
     @NotEmpty
     private String description;
 
     @NotEmpty
-    private Integer startPrice;
+    private double startPrice;
+    private LocalDateTime startAt;
+    private LocalDateTime endAt;
+    private boolean visible;
+    protected UUID userId;
+    protected String userDescription;
+    protected double finalPrice;
+    @Enumerated(value = EnumType.STRING)
+    protected AuctionStatus status;
 
-    private Date startDate;
+    @Column(name = "category_id")
+    protected UUID categoryId;
 
-    private Date endDate;
-
-    private boolean isConfirmed;
-
-    @OneToMany(mappedBy = "auction")
-    private List<Bid> bids = new ArrayList<>();
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToOne
-    @JoinColumn(name = "category")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private Category category;
 
 

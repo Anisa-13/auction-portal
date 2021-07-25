@@ -1,4 +1,4 @@
-package com.example.auction.service;
+package com.example.auction.service.user;
 
 import com.example.auction.domain.User;
 

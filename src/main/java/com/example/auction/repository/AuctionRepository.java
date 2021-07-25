@@ -1,6 +1,9 @@
 package com.example.auction.repository;
 
+import com.example.auction.domain.Auction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AuctionRepository extends JpaRepository {
+import java.util.UUID;
+
+public interface AuctionRepository extends JpaRepository<Auction, UUID> {
 }

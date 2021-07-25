@@ -1,10 +1,12 @@
 package com.example.auction.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -12,15 +14,10 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private int id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
 
-    private String categoryName;
-
-    @OneToMany(mappedBy = "category")
-    private List<Auction> auctions = new ArrayList<>();
-
-
-
+    private String name;
 }
