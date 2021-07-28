@@ -11,8 +11,8 @@
                 <div class="item">
                     <div>
                         <strong class="price" th:text="'$' + ${auction.startPrice}"></strong>
-                        <a href="/detail"><img th:src="'images/auctions/' + ${auction.image}" alt="Image"
-                                                        class="img-fluid"></a>
+                        <a th:href="'/' + ${auction.id}"><img th:src="'images/auctions/' + ${auction.image}" alt="Image"
+                                               class="img-fluid"></a>
                     </div>
                     <div class="p-4">
                         <h3><a href="/detail" th:text="${auction.name}"></a></h3>
@@ -25,6 +25,19 @@
                 </div>
             </div>
 
+        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-lg">
+                    <div class="custom-pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
