@@ -605,7 +605,7 @@ h1, h2, h3, h4, h5,
 /* Blocks */
 .intro-section {
   background-size: cover;
-  background-image: url('../images/hero_1.jpg');
+  background-image: url('https://news.bbcimg.co.uk/media/images/65439000/jpg/_65439383_65439382.jpg');
   position: relative; }
   .intro-section, .intro-section .container .row {
     height: 100vh;

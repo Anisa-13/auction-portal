@@ -4,8 +4,8 @@
       <div class="col-lg-3 order-lg-2">
         <div class="side-box mb-4">
           <p>
-            Price: <strong class="text-black">$95</strong> <br>
-            Number of Bids: <strong class="text-black">4</strong>
+            Price: <strong class="text-black" th:text="${auction.startPrice} + '$'"></strong> <br>
+            Number of Bids: <strong class="text-black" th:text="${auction.bids}"></strong>
           </p>
           <form action="#">
             <div class="mb-4">
@@ -15,7 +15,7 @@
               <button class="btn btn-primary btn-block">Buy Now</button>
             </div>
 
-            <p class="mb-0"><a href="#">Sign In</a> / <a href="#">Register</a></p>
+            <p class="mb-0"><a href="/login">Sign In</a> / <a href="/login">Register</a></p>
           </form>
         </div>
         <div class="side-box text-center">
@@ -27,11 +27,10 @@
       </div>
       <div class="col-lg-8 pr-lg-5">
         <div class="owl-carousel slide-one-item mb-5">
-          <img src="images/product_1.jpg" alt="Image" class="img-fluid mb-54">
-          <img src="images/product_1.jpg" alt="Image" class="img-fluid mb-54">
-          <img src="images/product_1.jpg" alt="Image" class="img-fluid mb-54">
+          <img th:src="@{${'/images/auctions/' + auction.image }}" alt="Image" class="img-fluid mb-54">
+
         </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, dolore, vitae. Maxime natus, temporibus accusamus aspernatur hic, impedit consectetur ut assumenda quidem mollitia et, praesentium ex eum ipsum. Explicabo, saepe.</p>
+        <p th:text="${auction.description}" ></p>
         <p>Ducimus, pariatur, culpa nihil molestias ea repellendus adipisci harum ipsam perferendis, quisquam nulla ipsa fugit! Minima velit explicabo eos, perspiciatis facilis illo, architecto earum sed dolores maiores vitae soluta repellat.</p>
         <p>Suscipit dolor consequuntur cum illo eos, perspiciatis voluptas ut, officia quos minus. Adipisci in consequatur, suscipit ipsum, doloribus dolorem vel quod blanditiis fugiat recusandae. Illum tenetur impedit eligendi cum qui.</p>
 
