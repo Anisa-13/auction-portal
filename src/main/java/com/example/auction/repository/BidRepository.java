@@ -1,6 +1,5 @@
 package com.example.auction.repository;
 
-import com.example.auction.domain.Auction;
 import com.example.auction.domain.Bid;
 import org.springframework.data.jpa.repository.JpaRepository;
 

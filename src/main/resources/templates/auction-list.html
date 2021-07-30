@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/style :: style"></head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-wrap">
+    <div th:replace="fragments/menu :: mobile-menu"></div>
+    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/intro :: intro"></div>
+
+    <div class="site-section">
+        <div class="container">
+
+            <div class="row">
+                <div  class="col-md-3">
+                    <div  class="side-box mb-5">
+                        <h3>Categories</h3>
+                        <ul th:if="${categories != null && categories.size() > 0}" th:each="category : ${categories}" class="list-unstyled auction-categories">
+                            <li><a href="#" th:text="${category.name}"> </a></li>
+                        </ul>
+                        <div th:if="${categories == null || categories.size() == 0}" class="row">
+                            <div class="col-12">
+                                <div class="alert alert-warning" role="alert">
+                                    Currently there are no categories!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-box">
+                        <h3>Recent Bidders</h3>
+                        <ul th:if="${recentBiders != null && recentBiders.size() > 0}" class="list-unstyled bidders">
+                            <li class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <span class="mr-2">1.</span>
+                                    <div class="d-flex align-items-center">
+                                        <img src="images/person_1.jpg" alt="Image" class="mr-2">
+                                        <span>Jean Smith</span>
+                                    </div>
+                                </div>
+                                <span class="price">$40</span>
+                            </li>
+                        </ul>
+                        <div th:if="${recentBiders == null || recentBiders.size() == 0}" class="row">
+                            <div class="col-12">
+                                <div class="alert alert-warning" role="alert">
+                                    Currently there are no recent bids!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9" th:insert="fragments/currentAuctions :: current-auctions"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="fragments/loader :: loader"></div>
+<div th:replace="fragments/script :: script"></div>
+</body>
+
+
+</html>
