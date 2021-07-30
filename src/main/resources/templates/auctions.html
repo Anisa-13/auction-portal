@@ -11,15 +11,12 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-3">
-                    <div class="side-box mb-5">
+                <div  class="col-md-3">
+                    <div  class="side-box mb-5">
                         <h3>Categories</h3>
-                        <ul class="list-unstyled auction-categories">
-                            <li><a href="#">Shoes <span>2109</span></a></li>
-                            <li><a href="#">Electronics <span>102</span></a></li>
-                            <li><a href="#">Clothing <span>392</span></a></li>
-                            <li><a href="#">Watches <span>291</span></a></li>
-                            <li><a href="#">Accessories <span>391</span></a></li>
+                        <ul th:each="category : ${categories}" class="list-unstyled auction-categories">
+                            <li><a href="#" th:text="${category.name}"> </a></li>
+
                         </ul>
                     </div>
                     <div class="side-box">
@@ -142,7 +139,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-9" th:insert="fragments/auction-list :: auction-list">
+                <div class="col-md-9" th:insert="fragments/currentAuctions :: current-auctions">
 
 
                 </div>

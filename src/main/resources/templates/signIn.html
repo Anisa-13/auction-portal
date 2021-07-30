@@ -6,13 +6,13 @@
     <div th:replace="fragments/menu :: mobile-menu"></div>
     <div th:replace="fragments/header :: header"></div>
 
-    <div class="intro-section" style="background-image: url('images/hero_1.jpg');">
+    <div class="intro-section" style="background-image: url('https://news.bbcimg.co.uk/media/images/65439000/jpg/_65439383_65439382.jpg');">
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-7 mx-auto text-center" data-aos="fade-up">
                     <h1>Login / Register</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit, nihil.</p>
-                    <p><a href="#" class="btn btn-primary">Explore Now</a></p>
+                    <p><a href="/" class="btn btn-primary">Explore Now</a></p>
                 </div>
             </div>
         </div>
@@ -44,28 +44,38 @@
                     </div>
                 </div>
             </div>
+
+            <form  action="#" th:action="@{/saveUser}" th:object="${user}"
+                   method="POST">
             <div class="col-lg-5">
                 <h2 class="mb-5 text-black"><strong>Register</strong></h2>
 
                 <div class="row">
                     <div class="col-md-12 form-group">
-                        <label for="femail">Username/Email</label>
-                        <input type="email" id="femail" class="form-control form-control-lg">
-                    </div>
+                        <label for="firstname">First Name</label>
+                        <input type="firstname" th:field="*{firstName}" id="firstname" class="form-control form-control-lg">
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="lastname">Last Name</label>
+                        <input type="lastname" th:field="*{lastName}" id="lastname" class="form-control form-control-lg">
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="femail">Email</label>
+                        <input type="email" th:field="*{email}" id="femail" class="form-control form-control-lg">
+
                 </div>
 
                 <div class="row">
                     <div class="col-md-12 form-group">
                         <label for="fpass">Password</label>
-                        <input type="password" id="fpass" class="form-control form-control-lg">
-                    </div>
-                </div>
+                        <input type="password" th:field="*{password}" id="fpass" class="form-control form-control-lg">
 
-                <div class="row">
-                    <div class="col-md-12 form-group">
-                        <label for="fpass2">Re-type Password</label>
-                        <input type="password" id="fpass2" class="form-control form-control-lg">
-                    </div>
                 </div>
 
                 <div class="row">
@@ -74,6 +84,7 @@
                     </div>
                 </div>
             </div>
+            </form>
         </div>
 
     </div>

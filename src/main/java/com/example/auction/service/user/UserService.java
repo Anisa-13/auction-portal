@@ -9,6 +9,6 @@ public interface UserService {
 
     List<User> getAllUsers();
     void saveUser(User user);
-    User getUserById(long id);
+    User getUserById(String id);
     /*Page<User> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);*/
 }

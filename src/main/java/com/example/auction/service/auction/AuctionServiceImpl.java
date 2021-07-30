@@ -5,6 +5,7 @@ import com.example.auction.domain.Category;
 import com.example.auction.repository.AuctionRepository;
 import com.example.auction.repository.CategoryRepository;
 import com.example.auction.utils.AuctionStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,12 +13,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Service
 public class AuctionServiceImpl implements AuctionService {
+
+    @Autowired
+    EntityManager entityManager;
+
     protected final AuctionRepository auctionRepository;
     protected final CategoryRepository categoryRepository;
 
@@ -39,6 +45,15 @@ public class AuctionServiceImpl implements AuctionService {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Auction> getAuctionsByCategory(String category) {
+        List<Auction> auctionList = entityManager.createNativeQuery("SELECT * FROM Auction WHERE category_id = ?1;")
+                .setParameter(1, "category")
+                .getResultList();
+
+        return auctionList;
     }
 
 /*

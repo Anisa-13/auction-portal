@@ -25,12 +25,12 @@ public class User {
     @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
-    @NotEmpty
+
     private String firstName;
-    @NotEmpty
+
     private String lastName;
-    @NotEmpty
+
     private String password;
-    @NotEmpty
+
     private String email;
 }
