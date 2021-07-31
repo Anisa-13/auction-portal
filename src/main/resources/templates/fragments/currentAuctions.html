@@ -3,47 +3,36 @@
         <div class="row mb-4">
             <div class="col-md-7 mb-5 text-center mx-auto">
                 <span class="caption">Auctions</span>
-                <h2 class="text-black">Current <strong>Auctions</strong></h2>
+                <h2 class="text-black"><span th:text="${filter != null && filter.categoryName != null && !#strings.isEmpty(filter.categoryName) ? filter.categoryName : 'ALL'}"></span> <strong>Auctions</strong></h2>
             </div>
         </div>
         <div class="row auctions-entry">
-            <div th:if="${currentAuctions != null && currentAuctions.size() > 0}" th:each="auction : ${currentAuctions}" class="col-6 col-md-4 col-lg-3">
+            <div th:if="${auctions != null && auctions.size() > 0}" th:each="auction : ${auctions}" class="col-6 col-md-4">
                 <div class="item">
                     <div>
                         <strong class="price" th:text="'$' + ${auction.startPrice}"></strong>
-                        <a th:href="'/' + ${auction.id}"><img th:src="'images/auctions/' + ${auction.image}" alt="Image"
-                                               class="img-fluid"></a>
+                        <a th:href="'/auction/' + ${auction.id}">
+                            <img th:src="'/images/auctions/' + ${auction.image}" th:alt="${auction.name}" class="img-fluid">
+                        </a>
                     </div>
                     <div class="p-4">
-                        <h3><a href="/detail" th:text="${auction.name}"></a></h3>
+                        <h3><a th:href="'/auction/' + ${auction.id}" th:text="${auction.name}"></a></h3>
                         <div class="d-flex mb-2">
-                            <span>Shoes</span>
+                            <span th:if="${auction.categoryId != null}" th:text="${auction.category.name}"></span>
                             <span class="ml-auto" th:text="${auction.bids} + ' bids'"></span>
                         </div>
-                        <a href="/detail" class="btn btn-bid">Submit a Bid</a>
+                        <a th:href="'/auction/' + ${auction.id}" class="btn btn-bid">More</a>
                     </div>
                 </div>
             </div>
-
-
         </div>
+
         <div class="container text-center">
-            <div th:if="${currentAuctions == null || currentAuctions.size() == 0}" class="col-12">
+            <div th:if="${auctions == null || auctions.size() == 0}" class="col-12">
                 <div class="alert alert-warning" role="alert">
-                    Currently there are no active Auctions!
+                    Currently there are no Auctions!
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col-lg">
-                    <div class="custom-pagination">
-                        <a href="#" class="active">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#">5</a>
-                    </div>
-                </div>
-            </div>-->
         </div>
     </div>
 </div>

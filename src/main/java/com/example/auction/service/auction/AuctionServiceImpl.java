@@ -4,7 +4,9 @@ import com.example.auction.domain.Auction;
 import com.example.auction.domain.Category;
 import com.example.auction.repository.AuctionRepository;
 import com.example.auction.repository.CategoryRepository;
+import com.example.auction.service.auction.dto.AuctionFilter;
 import com.example.auction.utils.AuctionStatus;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
@@ -49,23 +51,24 @@ public class AuctionServiceImpl implements AuctionService {
 
     @Override
     public List<Auction> getAuctionsByCategory(String category) {
-        List<Auction> auctionList = entityManager.createNativeQuery("SELECT * FROM Auction WHERE category_id = ?1;")
+        return entityManager.createNativeQuery("SELECT * FROM Auction WHERE category_id = ?1;")
                 .setParameter(1, "category")
                 .getResultList();
-
-        return auctionList;
     }
 
-/*
     @Override
-    public Page<Auction> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
-                Sort.by(sortField).descending();
+    public List<Auction> getList(AuctionFilter filter) {
+        if (filter != null && filter.getCategoryId() != null && !filter.getCategoryId().isEmpty()) {
+            Category category = categoryRepository.getById(UUID.fromString(filter.getCategoryId()));
+            if (category != null)
+                filter.setCategoryName(category.getName());
+        }
 
-        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
-        return this.auctionRepository.findAll(pageable);
+        return auctionRepository.getList(
+                StringUtils.isNotBlank(filter.getCategoryId()) ? filter.getCategoryId() : null,
+                filter.getStatus()
+        );
     }
-*/
 
     @Override
     public void createDummyData() {
@@ -101,9 +104,13 @@ public class AuctionServiceImpl implements AuctionService {
                 .startPrice(200)
                 .startAt(LocalDateTime.now())
                 .visible(true)
-                .bids(10)
+                .bids(0)
+                .sellPrice(800)
                 .status(AuctionStatus.ACTIVE)
                 .image("harry_potter.jpg")
+                .ownerId(UUID.randomUUID().toString())
+                .ownerFullName("Collen Winston")
+                .ownerDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repudiandae recusandae, incidunt possimus provident vel facilis!")
                 .build();
 
         auctionRepository.save(firstAuction);
@@ -115,8 +122,12 @@ public class AuctionServiceImpl implements AuctionService {
                 .startPrice(2000)
                 .startAt(LocalDateTime.now())
                 .visible(true)
-                .bids(10)
+                .sellPrice(4000)
+                .bids(0)
                 .status(AuctionStatus.ACTIVE)
+                .ownerId(UUID.randomUUID().toString())
+                .ownerFullName("John Smith")
+                .ownerDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repudiandae recusandae, incidunt possimus provident vel facilis!")
                 .image("richard_feynman.jpg")
                 .build();
 
@@ -127,11 +138,15 @@ public class AuctionServiceImpl implements AuctionService {
                 .name("The Whale")
                 .description("MELVILLE, HERMAN | The Whale. London: Richard Bentley, 1851 ")
                 .startPrice(5000)
+                .sellPrice(9000)
                 .startAt(LocalDateTime.now())
                 .visible(true)
-                .bids(10)
+                .bids(0)
                 .status(AuctionStatus.ACTIVE)
                 .image("herman_melville.jpg")
+                .ownerId(UUID.randomUUID().toString())
+                .ownerFullName("Gerard Harold")
+                .ownerDescription("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repudiandae recusandae, incidunt possimus provident vel facilis!")
                 .build();
 
         auctionRepository.save(thirdAuction);

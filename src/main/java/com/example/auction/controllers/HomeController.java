@@ -24,7 +24,8 @@ public class HomeController {
     @GetMapping("/")
     public String home(ModelMap model) {
        // auctionService.createDummyData();
-        model.addAttribute("currentAuctions", auctionService.getCurrentAuctions());
+        model.addAttribute("auctions", auctionService.getCurrentAuctions());
+        model.addAttribute("page", "home");
         return "index";
     }
 

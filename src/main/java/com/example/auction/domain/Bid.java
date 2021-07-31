@@ -27,23 +27,21 @@ public class Bid {
     @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
-    private double price;
+    private double amount;
 
     protected LocalDateTime bidAt;
 
     @Column(name = "user_id")
     @Type(type = "org.hibernate.type.UUIDCharType")
     protected UUID userId;
+    protected String userFullName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
 
     @Column(name = "auction_id")
     @Type(type = "org.hibernate.type.UUIDCharType")
     protected UUID auctionId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "auction_id", insertable = false, updatable = false)
-    private Auction auction;
+    protected String auctionName;
+    protected String auctionDescription;
+    protected String auctionImage;
+    protected double auctionInitialPrice;
 }

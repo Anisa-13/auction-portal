@@ -3,6 +3,7 @@ package com.example.auction.controllers;
 import com.example.auction.domain.User;
 import com.example.auction.service.user.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,12 +21,14 @@ public class SignInController {
     }
 
     @GetMapping("/login")
-    public String getLogin(){
+    public String getLogin(ModelMap model) {
+        model.addAttribute("user", new User());
         return "signIn";
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult result) {
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult result, ModelMap model) {
+        model.addAttribute("user", user);
         // save employee to database
         if (result.hasErrors()) {
             return "signIn";

@@ -15,7 +15,7 @@ public class UtilsController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/create-initial-data")
+    @RequestMapping(value = "/utils/create-initial-data")
     public ResponseEntity<String> createInitialData() {
         auctionService.createDummyData();
         return ResponseEntity.ok("Data created successfully!");

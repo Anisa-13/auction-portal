@@ -44,9 +44,15 @@ public class Auction {
     protected UUID userId;
     protected String userDescription;
     protected double finalPrice;
+    protected double sellPrice;
     @Enumerated(value = EnumType.STRING)
     protected AuctionStatus status;
     protected int bids = 0;
+
+    protected String ownerId;
+    protected String ownerFullName;
+    protected String ownerDescription;
+
 
     @Column(name = "category_id")
     @Type(type = "org.hibernate.type.UUIDCharType")

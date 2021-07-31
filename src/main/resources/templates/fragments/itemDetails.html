@@ -1,78 +1,66 @@
 <div class="site-section" th:fragment="itemDetails">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 order-lg-2">
-        <div class="side-box mb-4">
-          <p>
-            Price: <strong class="text-black" th:text="${auction.startPrice} + '$'"></strong> <br>
-            Number of Bids: <strong class="text-black" th:text="${auction.bids}"></strong>
-          </p>
-          <form action="#">
-            <div class="mb-4">
-              <input type="text" class="form-control mb-2" placeholder="$0.00">
-              <button class="btn btn-block">Submit a Bid</button>
-              <span class="d-block text-center my-2">or</span>
-              <button class="btn btn-primary btn-block">Buy Now</button>
-            </div>
+    <div class="container">
+        <div th:if="auction != null" class="row">
+            <div class="col-lg-3 order-lg-2">
+                <div class="side-box mb-4" th:if="${auction.status.name().equals('ACTIVE')}">
+                    <p>
+                        Start price: <strong class="text-black" th:text="${auction.startPrice} + '$'"></strong> <br>
+                        Number of Bids: <strong class="text-black" th:text="${auction.bids}"></strong>
+                    </p>
+                    <div th:replace="fragments/auction-submit :: bid-submit"></div>
+                    <div th:replace="fragments/auction-submit :: sell-submit"></div>
+                </div>
 
-            <p class="mb-0"><a href="/login">Sign In</a> / <a href="/login">Register</a></p>
-          </form>
+                <div class="side-box mb-4" th:if="${auction.status.name().equals('SOLD')}">
+                    <p>
+                        Start price: <strong class="text-black" th:text="${auction.startPrice} + '$'"></strong> <br>
+                        Number of Bids: <strong class="text-black" th:text="${auction.bids}"></strong> <br>
+                        Sold: <strong class="text-black" th:text="${auction.finalPrice} + ' $'"></strong><br>
+                        Byer: <strong class="text-black" th:text="${auction.userDescription}"></strong>
+                    </p>
+                </div>
+
+                <div class="side-box mb-4" th:if="${auction.status.name().equals('AUCTIONED')}">
+                    <p>
+                        Start price: <strong class="text-black" th:text="${auction.startPrice} + '$'"></strong> <br>
+                        Number of Bids: <strong class="text-black" th:text="${auction.bids}"></strong> <br>
+                        Sold: <strong class="text-black" th:text="${auction.finalPrice} + ' $'"></strong>
+                        Bider: <strong class="text-black" th:text="${auction.userDescription}"></strong>
+                    </p>
+                </div>
+
+                <div class="side-box mb-4" th:if="${auction.status.name().equals('UNSOLD')}">
+                    <p>
+                        Start price: <strong class="text-black" th:text="${auction.startPrice} + '$'"></strong> <br>
+                        Number of Bids: <strong class="text-black" th:text="${auction.bids}"></strong> <br>
+                        UNSOLD
+                    </p>
+                </div>
+                <div class="side-box text-center">
+                    <h3 class="h5 text-black" th:text="${auction.ownerFullName}"></h3>
+                    <span class="mb-3 d-block text-muted">Owner</span>
+                    <p th:text="${auction.ownerDescription}"></p>
+                </div>
+            </div>
+            <div class="col-lg-8 pr-lg-5">
+                <div class="owl-carousel slide-one-item mb-5">
+                    <img th:src="@{${'/images/auctions/' + auction.image }}" alt="Image" class="img-fluid mb-54">
+
+                </div>
+                <p th:text="${auction.description}"></p>
+
+
+                <h2 class="my-4">Bidders</h2>
+                <div th:replace="fragments/auction-bids :: bids"></div>
+            </div>
         </div>
-        <div class="side-box text-center">
-          <img src="images/person_3.jpg" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
-          <h3 class="h5 text-black">Collen Winston</h3>
-          <span class="mb-3 d-block text-muted">Owner</span>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repudiandae recusandae, incidunt possimus provident vel facilis!</p>
+
+        <div th:if="${auction == null}" class="row">
+            <div th:if="${currentAuctions == null || currentAuctions.size() == 0}" class="col-12">
+                <div class="alert alert-warning" role="alert">
+                    Auction was not found in archive!
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-lg-8 pr-lg-5">
-        <div class="owl-carousel slide-one-item mb-5">
-          <img th:src="@{${'/images/auctions/' + auction.image }}" alt="Image" class="img-fluid mb-54">
-
-        </div>
-        <p th:text="${auction.description}" ></p>
-        <p>Ducimus, pariatur, culpa nihil molestias ea repellendus adipisci harum ipsam perferendis, quisquam nulla ipsa fugit! Minima velit explicabo eos, perspiciatis facilis illo, architecto earum sed dolores maiores vitae soluta repellat.</p>
-        <p>Suscipit dolor consequuntur cum illo eos, perspiciatis voluptas ut, officia quos minus. Adipisci in consequatur, suscipit ipsum, doloribus dolorem vel quod blanditiis fugiat recusandae. Illum tenetur impedit eligendi cum qui.</p>
-
-
-        <h2 class="my-4">Bidders</h2>
-        <ul class="list-unstyled bidders">
-          <li class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-              <span class="mr-2">1.</span>
-              <div class="d-flex align-items-center">
-                <img src="images/person_1.jpg" alt="Image" class="mr-2">
-                <span>Jean Smith</span>
-              </div>
-            </div>
-            <span class="price">$40</span>
-          </li>
-
-          <li class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-              <span class="mr-2">2.</span>
-              <div class="d-flex align-items-center">
-                <img src="images/person_2.jpg" alt="Image" class="mr-2">
-                <span>Chris Wilson</span>
-              </div>
-            </div>
-            <span class="price">$87</span>
-          </li>
-
-
-          <li class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-              <span class="mr-2">3.</span>
-              <div class="d-flex align-items-center">
-                <img src="images/person_3.jpg" alt="Image" class="mr-2">
-                <span>Kyle Anderson</span>
-              </div>
-            </div>
-            <span class="price">$310</span>
-          </li>
-
-        </ul>
-      </div>
     </div>
-  </div>
 </div>

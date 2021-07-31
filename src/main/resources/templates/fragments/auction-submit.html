@@ -1,0 +1,43 @@
+<form th:action="'/auction/bid/' + ${auction.id}" th:object="${bid}" method="post" th:fragment="bid-submit">
+    <div th:if="${!#strings.isEmpty(bidSuccess)}" class="alert alert-success" role="alert">
+        <span th:text="${bidSuccess}"></span>
+    </div>
+
+    <div th:if="${!#strings.isEmpty(bidError)}" class="alert alert-warning" role="alert">
+        <span th:text="${bidError}"></span>
+    </div>
+
+    <div th:if="${#fields.hasErrors()}">
+        <div class="alert alert-warning" role="alert">
+            <ul>
+                <li th:each="err : ${#fields.detailedErrors()}" th:text="${err.getFieldName()} + ': ' + ${err.getMessage()}" />
+            </ul>
+        </div>
+    </div>
+    <div class="mb-4">
+        <input th:field="*{amount}" type="text" class="form-control mb-2" th:placeholder="${auction.startPrice + 1} + ' $'">
+        <button class="btn btn-block" type="submit">Make a Bid</button>
+
+    </div>
+</form>
+
+<form th:action="'/auction/sell/' + ${auction.id}" th:object="${sell}" method="post" th:fragment="sell-submit">
+    <div th:if="${!#strings.isEmpty(sellSuccess)}" class="alert alert-success" role="alert">
+        <span th:text="${sellSuccess}"></span>
+    </div>
+
+    <div th:if="${!#strings.isEmpty(sellError)}" class="alert alert-success" role="alert">
+        <span th:text="${sellError}"></span>
+    </div>
+    <div th:if="${#fields.hasErrors()}">
+        <div class="alert alert-warning" role="alert">
+            <ul>
+                <li th:each="err : ${#fields.detailedErrors()}" th:text="${err.getFieldName()} + ': ' + ${err.getMessage()}" />
+            </ul>
+        </div>
+    </div>
+    <div class="mb-4">
+        <input type="text" th:placeholder="${auction.sellPrice} + ' $'" disabled class="form-control mb-2">
+        <button class="btn btn-primary btn-block" type="submit">Buy Now</button>
+    </div>
+</form>
